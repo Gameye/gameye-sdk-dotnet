@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Id>gameye-sdk-dotnet</Id>
     <Authors>Gameye</Authors>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
     <ProjectUrl>https://github.com/Gameye/gameye-sdk-dotnet</ProjectUrl>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Gameye.Messaging.Client" Version="1.0.0" />
-    <PackageReference Include="Gameye.PublicApiMessages" Version="1.0.0" />
+    <PackageReference Include="Gameye.PublicApiMessages" Version="0.1.1" />
     <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
   </ItemGroup>
 

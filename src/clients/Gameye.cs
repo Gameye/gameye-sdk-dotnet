@@ -3,6 +3,7 @@ using Gameye.PublicApi.Commands;
 using Gameye.PublicApi.Queries;
 using Gameye.Messaging.Client;
 using System.Collections.Generic;
+using System;
 
 namespace Gameye.Sdk
 {
@@ -10,7 +11,6 @@ namespace Gameye.Sdk
     {
         private readonly GameyeClientConfig clientConfig;
         private readonly ClientStore store;
-        private readonly List<EventStream> activeStreams = new List<EventStream>();
 
         public GameyeClient(GameyeClientConfig clientConfig = null)
         {
@@ -18,11 +18,14 @@ namespace Gameye.Sdk
             store = new ClientStore();
         }
 
+        private const int HEARTBEAT_INTERVAL = 10 * 1000;
+
         private Dictionary<string, string> Headers 
             => new Dictionary<string, string>
                 {
                     { "Authorization", $"Bearer {clientConfig.Token}" },
-                    { "Accept", "application/x-ndjson" }
+                    { "Accept", "application/x-ndjson" },
+                    { "x-heartbeat-interval", $"{HEARTBEAT_INTERVAL}" },
                 };
 
 
@@ -62,22 +65,21 @@ namespace Gameye.Sdk
             await Command.Invoke($"{clientConfig.Endpoint}/action/{command.Type}", command.Payload, Headers);
         }
 
-        public async Task SubscribeSessionEvents()
+        public async Task SubscribeSessionEvents(Action onStreamClosed = null)
         {
             var command = new SessionQuery();
 
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/{command.Type}", null, Headers);
-            activeStreams.Add(eventStream);
 
             eventStream.OnDataReceived += store.Dispatch;
             eventStream.Start();
             eventStream.OnEventsFinished += () =>
             {
-                activeStreams.Remove(eventStream);
+                onStreamClosed?.Invoke();
             };
         }
 
-        public async Task SubscribeStatisticsEvents()
+        public async Task SubscribeStatisticsEvents(Action onStreamClosed = null)
         {
             var payload = new Dictionary<string, string>
             {
@@ -86,6 +88,10 @@ namespace Gameye.Sdk
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/statistics", payload, Headers);
             eventStream.OnDataReceived += store.Dispatch;
             eventStream.Start();
+            eventStream.OnEventsFinished += () =>
+            {
+                onStreamClosed?.Invoke();
+            };
         }
     }
 }

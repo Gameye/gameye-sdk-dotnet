@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 
 namespace Gameye.Sdk
 {
-    internal class Session
+    public class Session
     {
         public string Image { get; set; }
         public string Location { get; set; }
@@ -12,7 +12,7 @@ namespace Gameye.Sdk
         public Dictionary<string, long> Port { get; set; }
     }
 
-    internal class SessionState
+    public class SessionState
     {
         public ImmutableDictionary<string, Session> Sessions { get; private set; }
 
