@@ -17,10 +17,14 @@ namespace Gameye.Sdk
 
         public void Dispatch(string json)
         {
-            var action = JObject.Parse(json);
+            if(!string.IsNullOrWhiteSpace(json))
+            {
+                var action = JObject.Parse(json);
 
-            sessionState = SessionReducer.Reduce(sessionState, action);
-            statisticsState = StatisticsReducer.Reduce(statisticsState, action);
+                sessionState = SessionReducer.Reduce(sessionState, action);
+                statisticsState = StatisticsReducer.Reduce(statisticsState, action);
+            }
+
         }
 
     }
