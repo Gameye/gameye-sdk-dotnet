@@ -10,25 +10,43 @@ namespace Gameye.Sdk
     public partial class GameyeClient
     {
         private readonly GameyeClientConfig clientConfig;
-        private readonly ClientStore store;
+        public SessionStore SessionStore { get; private set; }
+        public StatisticsStore StatisticsStore { get; private set; }
 
         public GameyeClient(GameyeClientConfig clientConfig = null)
         {
             this.clientConfig = clientConfig ?? new GameyeClientConfig();
-            store = new ClientStore();
+            SessionStore = new SessionStore();
+            StatisticsStore = new StatisticsStore();
         }
 
         private const int HEARTBEAT_INTERVAL = 10 * 1000;
 
-        private Dictionary<string, string> Headers 
+        private Dictionary<string, string> StreamHeaders
+             => new Dictionary<string, string>
+                 {
+                            { "Authorization", $"Bearer {clientConfig.Token}" },
+                            { "Accept", "application/x-ndjson" },
+                            { "x-heartbeat-interval", $"{HEARTBEAT_INTERVAL}" },
+                 };
+
+        private Dictionary<string, string> CommandHeaders 
             => new Dictionary<string, string>
                 {
                     { "Authorization", $"Bearer {clientConfig.Token}" },
-                    { "Accept", "application/x-ndjson" },
-                    { "x-heartbeat-interval", $"{HEARTBEAT_INTERVAL}" },
                 };
 
 
+        /// <summary>
+        /// Start a match
+        /// </summary>
+        /// <param name="matchKey"></param>
+        /// <param name="gameKey"></param>
+        /// <param name="locationKeys"></param>
+        /// <param name="templateKey"></param>
+        /// <param name="config"></param>
+        /// <param name="endCallbackUrl"></param>
+        /// <returns>An awaitable task</returns>
         public async Task CommandStartMatch(string matchKey,
             string gameKey,
             string[] locationKeys,
@@ -49,9 +67,14 @@ namespace Gameye.Sdk
                 }
             };
 
-            await Command.Invoke($"{clientConfig.Endpoint}/action/{command.Type}", command.Payload, Headers);
+            await Command.Invoke($"{clientConfig.Endpoint}/action/{command.Type}", command.Payload, CommandHeaders);
         }
 
+        /// <summary>
+        /// Stop a match
+        /// </summary>
+        /// <param name="matchKey"></param>
+        /// <returns>An awaitable task</returns>
         public async Task CommandStopMatch(string matchKey)
         {
             var command = new StopMatchCommand
@@ -62,16 +85,21 @@ namespace Gameye.Sdk
                 }
             };
 
-            await Command.Invoke($"{clientConfig.Endpoint}/action/{command.Type}", command.Payload, Headers);
+            await Command.Invoke($"{clientConfig.Endpoint}/action/{command.Type}", command.Payload, CommandHeaders);
         }
 
+        /// <summary>
+        /// Subscribe to all session events
+        /// </summary>
+        /// <param name="onStreamClosed"></param>
+        /// <returns>An awaitable task</returns>
         public async Task SubscribeSessionEvents(Action onStreamClosed = null)
         {
             var command = new SessionQuery();
 
-            var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/{command.Type}", null, Headers);
+            var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/{command.Type}", null, StreamHeaders);
 
-            eventStream.OnDataReceived += store.Dispatch;
+            eventStream.OnDataReceived += SessionStore.Dispatch;
             eventStream.Start();
             eventStream.OnEventsFinished += () =>
             {
@@ -79,14 +107,16 @@ namespace Gameye.Sdk
             };
         }
 
-        public async Task SubscribeStatisticsEvents(Action onStreamClosed = null)
+        /// <summary>
+        /// Subscribe to all statistic events for a given match
+        /// </summary>
+        /// <param name="matchKey"></param>
+        /// <param name="onStreamClosed"></param>
+        /// <returns>An awaitable task</returns>
+        public async Task SubscribeStatisticsEvents(string matchKey, Action onStreamClosed = null)
         {
-            var payload = new Dictionary<string, string>
-            {
-                    { "matchKey", "8f5e5744-3fe9-4d2d-a425-95bfddac13af" }
-            };
-            var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/statistics", payload, Headers);
-            eventStream.OnDataReceived += store.Dispatch;
+            var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/statistic", new { matchKey }, StreamHeaders);
+            eventStream.OnDataReceived += StatisticsStore.Dispatch;
             eventStream.Start();
             eventStream.OnEventsFinished += () =>
             {

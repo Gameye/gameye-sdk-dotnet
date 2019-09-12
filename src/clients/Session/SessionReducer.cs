@@ -1,8 +1,5 @@
 ﻿using Gameye.PublicApi.Events;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
-using System;
 using System.Collections.Generic;
 
 namespace Gameye.Sdk

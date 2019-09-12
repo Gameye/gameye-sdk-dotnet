@@ -6,19 +6,16 @@ namespace Gameye.Sdk
 {
     internal class StatisticsReducer
     { 
-        public static StatisticsState Reduce(StatisticsState state, JToken action) 
+        public static StatisticsState Reduce(StatisticsState state, JArray action) 
         {
-            Dictionary<string, Statistics> statistics = new Dictionary<string, Statistics>(state.Statistics);
+            Dictionary<string, Statistic> statistics = new Dictionary<string, Statistic>(state.Statistics);
 
-            switch (action["type"].ToString())
+            foreach(var statistic in action)
             {
-                case "statistic":
-
-                    statistics.Clear();
-                    
-                    break;
+                
             }
 
+            
             return StatisticsState.WithStatistics(statistics);
         }
     }

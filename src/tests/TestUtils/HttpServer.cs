@@ -31,10 +31,11 @@ namespace Gameye.Sdk.Tests.TestUtils
 
         public void Start()
         {
+            listener.Start();
+            Console.WriteLine("HttpServer: Started");
+
             Task.Run(() =>
             {
-                listener.Start();
-                Console.WriteLine("HttpServer: Started");
 
                 var token = tokenSource.Token;
                 while (!token.IsCancellationRequested)
