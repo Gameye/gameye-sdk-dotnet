@@ -10,7 +10,7 @@ namespace Gameye.Sdk
     {
         private readonly GameyeClientConfig clientConfig;
         private readonly ClientStore store;
-        private readonly List<EventStream> activeStreams;
+        private readonly List<EventStream> activeStreams = new List<EventStream>();
 
         public GameyeClient(GameyeClientConfig clientConfig = null)
         {

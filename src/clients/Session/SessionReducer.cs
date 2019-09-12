@@ -14,14 +14,10 @@ namespace Gameye.Sdk
             var sessions = new Dictionary<string, Session>(state.Sessions);
             var payload = action["payload"];
 
-            var traceWriter = new MemoryTraceWriter();
-            var jsonSerializer = new JsonSerializer();
-            jsonSerializer.TraceWriter = traceWriter;
-
             switch (action["type"].ToString())
             {
                 case "session-initialized":
-                    var initializedEvent = payload.ToObject<SessionInitializedEventPayload>(jsonSerializer);
+                    var initializedEvent = payload.ToObject<SessionInitializedEventPayload>();
                     sessions.Clear();
                     foreach (var initializedSession in initializedEvent.Sessions)
                     {
