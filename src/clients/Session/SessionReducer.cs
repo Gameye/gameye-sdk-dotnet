@@ -21,14 +21,12 @@ namespace Gameye.Sdk
                     sessions.Clear();
                     foreach (var initializedSession in initializedEvent.Sessions)
                     {
-                        sessions.Add(initializedSession.Id, new Session
-                        {
-                            Created = initializedSession.Created,
-                            Host = initializedSession.Host,
-                            Image = initializedSession.Image, 
-                            Location = initializedSession.Location,
-                            Port = new Dictionary<string, long>(initializedSession.Port),
-                        });
+                        sessions.Add(initializedSession.Id, new Session(initializedSession.Id,
+                                initializedSession.Image,
+                                initializedSession.Location,
+                                initializedSession.Host,
+                                initializedSession.Created,
+                                new Dictionary<string, long>(initializedSession.Port)));
                     }
                     break;
 
@@ -37,14 +35,13 @@ namespace Gameye.Sdk
                     var startedSession = startedEvent.Session;
                     if(!sessions.ContainsKey(startedSession.Id))
                     {
-                        sessions.Add(startedSession.Id, new Session
-                        {
-                            Created = startedSession.Created,
-                            Host = startedSession.Host,
-                            Image = startedSession.Image,
-                            Location = startedSession.Location,
-                            Port = new Dictionary<string, long>(startedSession.Port),
-                        });
+                        
+                        sessions.Add(startedSession.Id, new Session(startedSession.Id,
+                            startedSession.Image,
+                            startedSession.Location,
+                            startedSession.Host,
+                            startedSession.Created,
+                            new Dictionary<string, long>(startedSession.Port)));
                     }
                     break;
 

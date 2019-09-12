@@ -17,6 +17,7 @@ namespace Examples
         {
             var config = new GameyeClientConfig("https://api.gameye.org");
             var client = new GameyeClient(config);
+            bool running = true;
 
             var items = new Dictionary<char, MenuItem>
             {
@@ -49,15 +50,22 @@ namespace Examples
                         Message = "Listen to Statistics",
                         Action = async () => { await client.SubscribeStatisticsEvents(); }
                     }
+                },
+                {
+                    'q',
+                    new MenuItem
+                    {
+                        Message = "Quit",
+                        Action = () => running = false,
+                    }
                 }
 
             };
 
 
             char readKey = ' ';
-            while(readKey != 'q')
+            while(running)
             {
-                Console.Clear();
                 Console.WriteLine("Choose an action");
                 foreach(var menuItem in items)
                 {
@@ -69,7 +77,7 @@ namespace Examples
                 {
                     try
                     {
-                        items[readKey].Action();
+                        items[readKey].Action?.Invoke();
                     }
                     catch (Exception e)
                     {
