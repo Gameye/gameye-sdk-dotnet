@@ -78,5 +78,7 @@ namespace Gameye.Sdk.Tests
             taskCompletionSource.Task.Wait();
             server.Stop();
         }
+
+        // TODO: Session, Stats and Logs sub calls!!
     }
 }

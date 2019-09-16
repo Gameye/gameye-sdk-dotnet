@@ -8,7 +8,7 @@ namespace Gameye.Sdk
     {
         private readonly JObject document = new JObject();
 
-        private PatchDocument(JObject document)
+        public PatchDocument(JObject document)
         {
             this.document = document.DeepClone() as JObject;
         }

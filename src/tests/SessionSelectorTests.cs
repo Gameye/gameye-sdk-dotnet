@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Gameye.Sdk.Tests
 {
@@ -79,7 +78,6 @@ namespace Gameye.Sdk.Tests
 
             var foundSession = SessionSelectors.SelectSession(sessionState, "session-id-one");
             Assert.AreEqual("specific-game", foundSession.Image);
-
 
             var shouldBeNull = SessionSelectors.SelectSession(sessionState, "some-key-that-shouldnt-exist");
             Assert.AreEqual(null, shouldBeNull);

@@ -62,6 +62,6 @@ namespace Gameye.Sdk
             => statisticsState.Statistics.GetAt<Team>($"statistic.team.{teamKey}");
 
         public static long SelectRounds(StatisticsState statisticsState)
-            => statisticsState.Statistics.GetAt<long>($"startedRounds");
+            => statisticsState.Statistics.GetAt<long>($"statistic.startedRounds");
     }
 }

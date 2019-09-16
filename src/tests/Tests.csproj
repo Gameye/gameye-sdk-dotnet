@@ -16,4 +16,13 @@
     <ProjectReference Include="..\clients\Gameye.Sdk.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Content\logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\stats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
