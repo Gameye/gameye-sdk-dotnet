@@ -5,24 +5,6 @@ using System.Linq;
 
 namespace Gameye.Sdk
 {
-
-    public class Player
-    {
-        public string PlayerKey { get; set; }
-        public string Uid { get; set; }
-        public bool? Connected { get; set; }
-        public string Name { get; set; }
-        public Dictionary<string, float> Statistic { get; set; }
-    }
-
-    public class Team
-    {
-        public string TeamKey { get; set; }
-        public string Name { get; set; }
-        public Dictionary<string, float> Statistic { get; set; }
-        public Dictionary<string, bool> Player { get; set; }
-    }
-
     public static class StatisticsSelectors
     {
         public static JObject SelectRawStatistics(StatisticsState statisticsState)

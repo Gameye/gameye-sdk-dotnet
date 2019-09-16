@@ -62,24 +62,7 @@ namespace Gameye.Sdk
             var parentPath = patch.Path.Take(patch.Path.Length - 1);
             FillPath(parentPath);
             var parent = GetObjectAt(parentPath);
-
-            switch (patch.Value)
-            {
-                case JObject jObject:
-                    parent.TryGetValue(patch.LastPathToken, out var current);
-                    if (current is JObject)
-                    {
-                        (current as JObject).Merge(jObject);
-                    }
-                    else
-                    {
-                        parent[patch.LastPathToken] = patch.Value.DeepClone();
-                    }
-                    break;
-                default:
-                    parent[patch.LastPathToken] = patch.Value.DeepClone();
-                    break;
-            }
+            parent[patch.LastPathToken] = patch.Value.DeepClone();
         }
 
         public PatchDocument Clone()

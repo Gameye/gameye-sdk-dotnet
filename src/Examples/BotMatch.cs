@@ -73,7 +73,7 @@ namespace Examples
             }
 
             File.WriteAllText("Stats.txt", finalStats.ToString());
-            File.WriteAllText("Logs.txt", string.Join(Environment.NewLine, allLogs));
+            File.WriteAllText("Logs.txt", string.Join("", allLogs));
 
             Console.WriteLine($"Session Destroyed");
         }
