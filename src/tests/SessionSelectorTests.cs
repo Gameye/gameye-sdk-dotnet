@@ -6,7 +6,7 @@ using System.Text;
 namespace Gameye.Sdk.Tests
 {
     [TestClass]
-    public class SelectorTests
+    public class SessionSelectorTests
     {
         private (string, Session) CreateSession(string gameKey = null, string sessionId = null)
         {

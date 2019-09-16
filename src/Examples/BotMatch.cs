@@ -17,7 +17,7 @@ namespace Examples
         
         public async Task Run()
         {
-            var config = new GameyeClientConfig("https://api.gameye.org");
+            var config = new GameyeClientConfig();
             var client = new GameyeClient(config);
             var sessionId = Guid.NewGuid().ToString();
 
@@ -55,7 +55,7 @@ namespace Examples
                 "csgo-dem",
                 new[] { "frankfurt" },
                 "bots",
-                new Dictionary<string, object> { { "maxRounds", 2 } });
+                new Dictionary<string, object> {{ "maxRounds", 2 }});
 
             while (session == null)
             {
