@@ -21,17 +21,7 @@ namespace Gameye.Sdk
             return logs;
         }
 
-        public static LogLine SelectLast(LogState logState)
-        {
-            var lines = logState.Logs.GetAt<JObject>("line");
-            if (lines == null)
-            {
-                return null;
-            }
-            return logState.Logs.GetAt<LogLine>($"line.{lines.Count - 1}");
-        }
-
-        public static IReadOnlyList<LogLine> SelectSince(LogState logState, int lineNumber)
+        public static IReadOnlyList<LogLine> SelectLogsSince(LogState logState, int lineNumber)
         {
             var lines = logState.Logs.GetAt<JObject>("line");
             var logs = new List<LogLine>();

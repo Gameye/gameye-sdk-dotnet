@@ -39,7 +39,7 @@ namespace Examples
             var currentLine = 0;
             client.LogStore.OnChange += (LogState state) =>
             {
-                var lastLogs = LogSelectors.SelectSince(state, currentLine);
+                var lastLogs = LogSelectors.SelectLogsSince(state, currentLine);
                 foreach(var log in lastLogs)
                 {
                     Console.WriteLine(log);
