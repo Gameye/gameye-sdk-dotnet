@@ -15,18 +15,15 @@ namespace Gameye.Sdk
 
         internal StatisticsStore()
         {
-            var startStats = new Dictionary<string, JToken>();
-            statisticsState = StatisticsState.WithStatistics(new Statistics(startStats));
+            statisticsState = StatisticsState.WithStatistics(new PatchDocument());
         }
 
         internal void Dispatch(string json)
         {
             if (!string.IsNullOrWhiteSpace(json))
             {
-                var action = JArray.Parse(json);
-
-                statisticsState = StatisticsReducer.Reduce(statisticsState, action);
-
+                var actions = JArray.Parse(json);
+                statisticsState = StatisticsReducer.Reduce(statisticsState, actions);
                 OnChange?.Invoke(statisticsState);
             }
         }

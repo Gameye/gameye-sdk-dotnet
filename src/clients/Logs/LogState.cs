@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 namespace Gameye.Sdk
 {
@@ -9,71 +6,10 @@ namespace Gameye.Sdk
     {
         public string LineKey { get; set; }
         public string Payload { get; set; }
-    }
 
-    public class PatchDocument
-    {
-        private readonly JObject document = new JObject();
-
-        private void FillPath(IEnumerable<string> path)
+        public override string ToString()
         {
-            var existing = document.SelectToken(string.Join(".", path));
-            if (existing != null)
-            {
-                return;
-            }
-
-            JObject currentParent = document;
-            foreach (var pathSection in path)
-            {
-                currentParent.TryGetValue(pathSection, out var found);
-                if (found == null)
-                {
-                    currentParent[pathSection] = new JObject();
-                    found = currentParent[pathSection];
-                }
-
-                currentParent = found as JObject;
-            }
-        }
-
-        public T GetAt<T>(string jpath)
-        {
-            var existing = document.SelectToken(jpath);
-            return existing == null ? default : existing.ToObject<T>();
-        }
-
-        private JObject GetObjectAt(IEnumerable<string> path)
-        {
-            return document.SelectToken(string.Join(".", path)) as JObject;
-        }
-
-        public void Patch(Patch patch)
-        {
-            if (patch.Path.Length == 0)
-                return;
-
-            var parentPath = patch.Path.Take(patch.Path.Length - 1);
-            FillPath(parentPath);
-            var parent = GetObjectAt(parentPath);
-
-            switch (patch.Value)
-            {
-                case JObject jObject:
-                    parent.TryGetValue(patch.LastPathToken, out var current);
-                    if (current is JObject)
-                    {
-                        (current as JObject).Merge(jObject);
-                    }
-                    else
-                    {
-                        parent[patch.LastPathToken] = patch.Value.DeepClone();
-                    }
-                    break;
-                default:
-                    parent[patch.LastPathToken] = patch.Value.DeepClone();
-                    break;
-            }
+            return $"{LineKey}: ${Payload}";
         }
     }
 
@@ -87,8 +23,7 @@ namespace Gameye.Sdk
         {
             return new LogState
             {
-                // TODO: Immutability
-                Logs = logs
+                Logs = logs.Clone()
             };
         }
     }

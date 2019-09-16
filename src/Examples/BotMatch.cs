@@ -1,5 +1,6 @@
 ﻿using Gameye.Messaging.Client;
 using Gameye.Sdk;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +23,9 @@ namespace Examples
 
             Console.WriteLine($"Creating session with id {sessionId}");
 
+            JObject finalStats = null;
+            IEnumerable<LogLine> allLogs = null;
+
             client.SessionStore.OnChange += (SessionState state) =>
             {
                 session = SessionSelectors.SelectSession(state, sessionId);
@@ -29,6 +33,7 @@ namespace Examples
 
             client.StatisticsStore.OnChange += (StatisticsState state) =>
             {
+                finalStats = StatisticsSelectors.SelectRawStatistics(state);
             };
 
             var currentLine = 0;
@@ -37,9 +42,11 @@ namespace Examples
                 var lastLogs = LogSelectors.SelectSince(state, currentLine);
                 foreach(var log in lastLogs)
                 {
-                    Console.WriteLine($"{log.LineKey}: {log.Payload}");
+                    Console.WriteLine(log);
                 }
                 currentLine += lastLogs.Count();
+
+                allLogs = LogSelectors.SelectAllLogs(state);
             };
 
             await client.SubscribeSessionEvents();
@@ -64,6 +71,9 @@ namespace Examples
             {
                 Sleep(10);
             }
+
+            File.WriteAllText("Stats.txt", finalStats.ToString());
+            File.WriteAllText("Logs.txt", string.Join(Environment.NewLine, allLogs));
 
             Console.WriteLine($"Session Destroyed");
         }

@@ -1,27 +1,16 @@
-﻿using Gameye.PublicApi.Queries;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
 
 namespace Gameye.Sdk
 {
     internal class StatisticsReducer
     { 
-        public static StatisticsState Reduce(StatisticsState state, JArray action) 
+        public static StatisticsState Reduce(StatisticsState state, JArray actions) 
         {
-            Statistics statistics = state.Statistics.Clone();
+            var statistics = state.Statistics.Clone();
 
-            foreach(var statistic in action)
+            foreach (JObject action in actions)
             {
-                if (statistic is JObject)
-                {
-                    var path = statistic["path"].ToObject<string[]>();
-                    statistics.Add(path, statistic["value"]);
-                }
-                else
-                {
-                    Console.WriteLine($"Warning: Got Non-JObject State: {statistic.ToString()}");
-                }
+                statistics.Patch(action.ToObject<Patch>());
             }
             
             return StatisticsState.WithStatistics(statistics);

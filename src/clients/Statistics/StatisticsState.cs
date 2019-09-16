@@ -6,15 +6,15 @@ namespace Gameye.Sdk
 {
     public class StatisticsState
     {
-        public Statistics Statistics { get; private set; }
+        public PatchDocument Statistics { get; private set; }
 
         private StatisticsState() { }
 
-        public static StatisticsState WithStatistics(Statistics statistics)
+        public static StatisticsState WithStatistics(PatchDocument statistics)
         {
             return new StatisticsState
             {
-                Statistics = statistics
+                Statistics = statistics.Clone()
             };
         }
     }

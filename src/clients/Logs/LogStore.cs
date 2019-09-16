@@ -21,11 +21,7 @@ namespace Gameye.Sdk
             if (!string.IsNullOrWhiteSpace(json))
             {
                 var actions = JArray.Parse(json);
-                foreach(JObject action in actions)
-                {
-                    logState = LogReducer.Reduce(logState, action.ToObject<Patch>());
-                }
-
+                logState = LogReducer.Reduce(logState, actions);
                 OnChange?.Invoke(logState);
             }
         }

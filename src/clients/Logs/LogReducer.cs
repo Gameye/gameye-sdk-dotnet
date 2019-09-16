@@ -1,22 +1,18 @@
 ﻿using Newtonsoft.Json.Linq;
-using System.Linq;
 
 namespace Gameye.Sdk
 {
-    public class Patch
-    {
-        public string[] Path { get; set; }
-        public JToken Value { get; set; }
-        public string JPath => string.Join(".", Path);
-        public string LastPathToken => Path.Last();
-    }
-
     internal class LogReducer
     {
-        public static LogState Reduce(LogState state, Patch patch) 
+        public static LogState Reduce(LogState state, JArray actions) 
         {
-            var logs = state.Logs;
-            logs.Patch(patch);
+            var logs = state.Logs.Clone();
+
+            foreach (JObject action in actions)
+            {
+                logs.Patch(action.ToObject<Patch>());
+            }
+
             return LogState.WithLogs(logs);
         }
     }

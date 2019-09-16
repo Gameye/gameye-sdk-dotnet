@@ -5,6 +5,22 @@ namespace Gameye.Sdk
 {
     public static class LogSelectors
     {
+        public static IReadOnlyList<LogLine> SelectAllLogs(LogState logState)
+        {
+            var lines = logState.Logs.GetAt<JObject>("line");
+            if (lines == null)
+            {
+                return null;
+            }
+
+            var logs = new List<LogLine>();
+            foreach (var log in lines)
+            {
+                logs.Add(log.Value.ToObject<LogLine>());
+            }
+            return logs;
+        }
+
         public static LogLine SelectLast(LogState logState)
         {
             var lines = logState.Logs.GetAt<JObject>("line");
@@ -15,7 +31,7 @@ namespace Gameye.Sdk
             return logState.Logs.GetAt<LogLine>($"line.{lines.Count - 1}");
         }
 
-        public static IEnumerable<LogLine> SelectSince(LogState logState, int lineNumber)
+        public static IReadOnlyList<LogLine> SelectSince(LogState logState, int lineNumber)
         {
             var lines = logState.Logs.GetAt<JObject>("line");
             var logs = new List<LogLine>();
