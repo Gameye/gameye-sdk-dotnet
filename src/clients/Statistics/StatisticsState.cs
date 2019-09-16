@@ -4,29 +4,17 @@ using System.Collections.Immutable;
 
 namespace Gameye.Sdk
 {
-    public class Statistic
-    {
-        public ImmutableArray<string> Path { get; private set; }
-        public object Value { get; private set; }
-
-        public Statistic(string[] path, object value)
-        {
-            Path = path.ToImmutableArray();
-            Value = value;
-        }
-    }
-
     public class StatisticsState
     {
-        public ImmutableDictionary<string, Statistic> Statistics { get; private set; }
+        public Statistics Statistics { get; private set; }
 
         private StatisticsState() { }
 
-        public static StatisticsState WithStatistics(Dictionary<string, Statistic> statistics)
+        public static StatisticsState WithStatistics(Statistics statistics)
         {
             return new StatisticsState
             {
-                Statistics = statistics.ToImmutableDictionary()
+                Statistics = statistics
             };
         }
     }

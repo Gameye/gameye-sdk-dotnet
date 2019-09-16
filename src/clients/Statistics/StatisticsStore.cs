@@ -15,14 +15,14 @@ namespace Gameye.Sdk
 
         internal StatisticsStore()
         {
-            statisticsState = StatisticsState.WithStatistics(new Dictionary<string, Statistic>());
+            var startStats = new Dictionary<string, JToken>();
+            statisticsState = StatisticsState.WithStatistics(new Statistics(startStats));
         }
 
         internal void Dispatch(string json)
         {
             if (!string.IsNullOrWhiteSpace(json))
             {
-                Console.WriteLine(json);
                 var action = JArray.Parse(json);
 
                 statisticsState = StatisticsReducer.Reduce(statisticsState, action);

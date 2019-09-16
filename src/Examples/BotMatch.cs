@@ -2,6 +2,8 @@
 using Gameye.Sdk;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Examples
@@ -27,7 +29,17 @@ namespace Examples
 
             client.StatisticsStore.OnChange += (StatisticsState state) =>
             {
+            };
 
+            var currentLine = 0;
+            client.LogStore.OnChange += (LogState state) =>
+            {
+                var lastLogs = LogSelectors.SelectSince(state, currentLine);
+                foreach(var log in lastLogs)
+                {
+                    Console.WriteLine($"{log.LineKey}: {log.Payload}");
+                }
+                currentLine += lastLogs.Count();
             };
 
             await client.SubscribeSessionEvents();
@@ -46,6 +58,7 @@ namespace Examples
             Console.WriteLine($"Got Session at {session.Host}");
 
             await client.SubscribeStatisticsEvents(sessionId);
+            await client.SubscribeLogEvents(sessionId);
 
             while (session != null)
             {

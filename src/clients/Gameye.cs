@@ -12,12 +12,14 @@ namespace Gameye.Sdk
         private readonly GameyeClientConfig clientConfig;
         public SessionStore SessionStore { get; private set; }
         public StatisticsStore StatisticsStore { get; private set; }
+        public LogStore LogStore { get; private set; }
 
         public GameyeClient(GameyeClientConfig clientConfig = null)
         {
             this.clientConfig = clientConfig ?? new GameyeClientConfig();
             SessionStore = new SessionStore();
             StatisticsStore = new StatisticsStore();
+            LogStore = new LogStore();
         }
 
         private const int HEARTBEAT_INTERVAL = 10 * 1000;
@@ -117,6 +119,17 @@ namespace Gameye.Sdk
         {
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/statistic", new { matchKey }, StreamHeaders);
             eventStream.OnDataReceived += StatisticsStore.Dispatch;
+            eventStream.Start();
+            eventStream.OnEventsFinished += () =>
+            {
+                onStreamClosed?.Invoke();
+            };
+        }
+
+        public async Task SubscribeLogEvents(string matchKey, Action onStreamClosed = null)
+        {
+            var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/log", new { matchKey }, StreamHeaders);
+            eventStream.OnDataReceived += LogStore.Dispatch;
             eventStream.Start();
             eventStream.OnEventsFinished += () =>
             {
