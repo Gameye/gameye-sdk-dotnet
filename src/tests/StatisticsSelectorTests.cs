@@ -11,7 +11,7 @@ namespace Gameye.Sdk.Tests
     {
         private PatchDocument CreateStatistics()
         {
-            var json = File.ReadAllText("Content/stats.txt");
+            var json = File.ReadAllText("Content/stats.json");
             var document = JsonConvert.DeserializeObject(json) as JObject;
             return new PatchDocument(document);
         }
@@ -78,7 +78,7 @@ namespace Gameye.Sdk.Tests
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
             var raw = StatisticsSelectors.SelectRawStatistics(statisticsState);
 
-            var json = File.ReadAllText("Content/stats.txt");
+            var json = File.ReadAllText("Content/stats.json");
             Assert.AreEqual(json, raw.ToString());
         }
     }

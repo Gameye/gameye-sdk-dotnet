@@ -10,7 +10,7 @@ namespace Gameye.Sdk.Tests
     {
         private PatchDocument CreateLogs()
         {
-            var json = File.ReadAllText("Content/logs.txt");
+            var json = File.ReadAllText("Content/logs.json");
             var document = JsonConvert.DeserializeObject(json) as JObject;
             return new PatchDocument(document);
         }

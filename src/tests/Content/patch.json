@@ -1,0 +1,15 @@
+﻿{
+  "keyOne": "stringValue",
+  "keyTwo": 2,
+  "keyThree": [
+    "1",
+    2,
+    3,
+    "FOUR"
+  ],
+  "keyFour": {
+    "subKeyOne": 1,
+    "subKeyTwo": "TWO",
+    "subKeyThree": { "key": "value" }
+  }
+}

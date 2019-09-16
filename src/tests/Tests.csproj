@@ -17,10 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Content\logs.txt">
+    <None Update="Content\logs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Content\stats.txt">
+    <None Update="Content\patch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\stats.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
