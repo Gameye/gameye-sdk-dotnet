@@ -44,7 +44,7 @@ like this:
 ln test.sh .git/hooks/pre-commit
 ```
 
-Now, just before every comit, your code will be compiled and tested!
+Now, just before every commit, your code will be compiled and tested!
 
 
 ## License
