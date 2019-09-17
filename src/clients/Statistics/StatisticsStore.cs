@@ -8,6 +8,7 @@ namespace Gameye.Sdk
     public class StatisticsStore
     {
         private StatisticsState statisticsState;
+
         /// <summary>
         /// Triggered when a statistics subsciption receieves new events
         /// </summary>

@@ -8,6 +8,7 @@ namespace Gameye.Sdk
     public class SessionStore
     {
         private SessionState sessionState;
+
         /// <summary>
         /// Triggered when a session subsciption receieves new events
         /// </summary>

@@ -31,7 +31,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="sessionState"></param>
         /// <param name="sessionId"></param>
-        /// <returns>A Session instance</returns>
+        /// <returns>A Session object or null if not found</returns>
         public static Session SelectSession(SessionState sessionState, string sessionId)
         {
             if (!sessionState.Sessions.ContainsKey(sessionId))

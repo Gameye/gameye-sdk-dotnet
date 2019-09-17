@@ -21,7 +21,7 @@ namespace Gameye.Sdk.Tests
             var logState = LogState.WithLogs(CreateLogs());
             var filtered = LogSelectors.SelectAllLogs(logState);
 
-            Assert.AreEqual(1095, filtered.Count);
+            Assert.AreEqual(1095, filtered.Length);
             Assert.AreEqual("561", filtered[560].LineKey);
             Assert.AreEqual("$L 09/16/2019 - 12:39:05: \"Joe<4><BOT><TERRORIST>\" dropped \"vesthelm\"", filtered[896].Payload);
         }
@@ -32,7 +32,7 @@ namespace Gameye.Sdk.Tests
             var logState = LogState.WithLogs(CreateLogs());
             var filtered = LogSelectors.SelectLogsSince(logState, 912);
 
-            Assert.AreEqual(1095 - 912, filtered.Count);
+            Assert.AreEqual(1095 - 912, filtered.Length);
         }
 
     }

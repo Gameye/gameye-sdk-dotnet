@@ -11,7 +11,7 @@ namespace Gameye.Sdk
         public string Token { get; }
 
         /// <summary>
-        /// Constructor
+        /// Create a new client config
         /// </summary>
         /// <param name="endpoint">The endpoint provided to you by Gameye</param>
         /// <param name="token">The API token provided to you by Gameye</param>

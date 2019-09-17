@@ -14,6 +14,10 @@ namespace Gameye.Sdk
         public StatisticsStore StatisticsStore { get; private set; }
         public LogStore LogStore { get; private set; }
 
+        /// <summary>
+        /// Create a new client
+        /// </summary>
+        /// <param name="clientConfig"></param>
         public GameyeClient(GameyeClientConfig clientConfig = null)
         {
             this.clientConfig = clientConfig ?? new GameyeClientConfig();
@@ -48,7 +52,7 @@ namespace Gameye.Sdk
         /// <param name="templateKey"></param>
         /// <param name="config"></param>
         /// <param name="endCallbackUrl"></param>
-        /// <returns>An awaitable task</returns>
+        /// <returns>An awaitable task that finishes when the command is executed</returns>
         public async Task CommandStartMatch(string matchKey,
             string gameKey,
             string[] locationKeys,
@@ -76,7 +80,7 @@ namespace Gameye.Sdk
         /// Stop a match
         /// </summary>
         /// <param name="matchKey"></param>
-        /// <returns>An awaitable task</returns>
+        /// <returns>An awaitable task that finishes when the command is executed</returns>
         public async Task CommandStopMatch(string matchKey)
         {
             var command = new StopMatchCommand
@@ -94,7 +98,7 @@ namespace Gameye.Sdk
         /// Subscribe to all session events
         /// </summary>
         /// <param name="onStreamClosed"></param>
-        /// <returns>An awaitable task</returns>
+        /// <returns>An awaitable task that finishes when the stream is opened</returns>
         public async Task SubscribeSessionEvents(Action onStreamClosed = null)
         {
             var command = new SessionQuery();
@@ -114,7 +118,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="matchKey"></param>
         /// <param name="onStreamClosed"></param>
-        /// <returns>An awaitable task</returns>
+        /// <returns>An awaitable task that finishes when the stream is opened</returns>
         public async Task SubscribeStatisticsEvents(string matchKey, Action onStreamClosed = null)
         {
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/statistic", new { matchKey }, StreamHeaders);
@@ -126,6 +130,12 @@ namespace Gameye.Sdk
             };
         }
 
+        /// <summary>
+        /// Subscribe to all log events for a given match
+        /// </summary>
+        /// <param name="matchKey"></param>
+        /// <param name="onStreamClosed"></param>
+        /// <returns>An awaitable task that finishes when the stream is opened</returns>
         public async Task SubscribeLogEvents(string matchKey, Action onStreamClosed = null)
         {
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/log", new { matchKey }, StreamHeaders);

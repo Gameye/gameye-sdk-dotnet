@@ -6,6 +6,7 @@ namespace Gameye.Sdk
     public class LogStore
     {
         private LogState logState;
+
         /// <summary>
         /// Triggered when a Log subsciption receieves new events
         /// </summary>
