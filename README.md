@@ -16,7 +16,7 @@ nuget install Gameye.Sdk
 
 
 ## Example!
-Watch bots kill eachother and get acquainted with our sdk and real-time statistics.
+Watch bots kill each other and get acquainted with our sdk and real-time statistics.
 
 First, get an API key!
 Then checkout this repo on your computer.
