@@ -1,6 +1,6 @@
 # Gameye Sdk for .NET
 
-Create eSport and competitive matches for Counter-Strike: Global Offensive, Team Fortress 2, Left 4 Dead 2, Killing Floor 2, Insurgency and Day of Infamy for your platform without fixed monthly costs or any need for your own server infrastructure. Simply implement the Gameye API to kick off online matches when you need the, - you will even be able to implement the scores/statistics directly on your website. How cool is that!
+Create eSport and competitive matches for Counter-Strike: Global Offensive, Team Fortress 2, Left 4 Dead 2, Killing Floor 2, Insurgency and Day of Infamy for your platform without fixed monthly costs or any need for your own server infrastructure. Simply implement the Gameye API to kick off online matches when you need them; you will even be able to implement the scores/statistics directly on your website. How cool is that!
 
 ## .NET version
 The SDK is built targeting netstandard2.0. This means it should be compatible with apps built against .NET core 2.0 .NET framework 4.6.1, Unity 2018.1, Mono 5.4 or newer versions of
