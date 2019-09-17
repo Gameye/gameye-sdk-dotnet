@@ -20,7 +20,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsAllPlayers()
         {
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
-            var filtered = StatisticsSelectors.SelectPlayerList(statisticsState);
+            var filtered = statisticsState.SelectPlayerList();
 
             Assert.AreEqual(10, filtered.Length);
             Assert.AreEqual("Ivan", filtered.First(player => player.PlayerKey == "11").Name);
@@ -30,7 +30,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsOnlyRequestedPlayers()
         {
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
-            var filtered = StatisticsSelectors.SelectPlayerListForTeam(statisticsState, "1");
+            var filtered = statisticsState.SelectPlayerListForTeam("1");
 
             Assert.AreEqual(5, filtered.Length);
             Assert.IsNotNull(filtered.FirstOrDefault(player => player.PlayerKey == "7"));
@@ -38,7 +38,7 @@ namespace Gameye.Sdk.Tests
             Assert.IsNull(filtered.FirstOrDefault(player => player.Name == "Zane"));
             Assert.IsNull(filtered.FirstOrDefault(player => player.PlayerKey == "8"));
 
-            var selected = StatisticsSelectors.SelectPlayer(statisticsState, "5");
+            var selected = statisticsState.SelectPlayer("5");
             Assert.AreEqual("John", selected.Name);
         }
 
@@ -46,7 +46,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsAllTeams()
         {
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
-            var filtered = StatisticsSelectors.SelectTeamList(statisticsState);
+            var filtered = statisticsState.SelectTeamList();
 
             Assert.AreEqual(2, filtered.Length);
             Assert.AreEqual("Terrorists", filtered.First(team => team.TeamKey== "2").Name);
@@ -56,7 +56,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsOnlyRequestedTeams()
         {
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
-            var team = StatisticsSelectors.SelectTeam(statisticsState, "1");
+            var team = statisticsState.SelectTeam("1");
 
             Assert.IsNotNull(team);
             Assert.AreEqual("1", team.TeamKey);
@@ -67,7 +67,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsRounds()
         {
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
-            var rounds = StatisticsSelectors.SelectRounds(statisticsState);
+            var rounds = statisticsState.SelectRounds();
 
             Assert.AreEqual(2, rounds);
         }
@@ -76,7 +76,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsRawStatistics()
         {
             var statisticsState = StatisticsState.WithStatistics(CreateStatistics());
-            var raw = StatisticsSelectors.SelectRawStatistics(statisticsState);
+            var raw = statisticsState.SelectRawStatistics();
 
             var json = File.ReadAllText("Content/stats.json");
             Assert.AreEqual(json, raw.ToString());

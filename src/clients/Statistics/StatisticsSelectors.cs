@@ -12,7 +12,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="statisticsState"></param>
         /// <returns>A Newtonsoft JObject containing the current statistics snapshot</returns>
-        public static JObject SelectRawStatistics(StatisticsState statisticsState)
+        public static JObject SelectRawStatistics(this StatisticsState statisticsState)
             => statisticsState.Statistics.GetAt<JObject>("");
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="statisticsState"></param>
         /// <returns>An ImmutableArray of Players</returns>
-        public static ImmutableArray<Player> SelectPlayerList(StatisticsState statisticsState)
+        public static ImmutableArray<Player> SelectPlayerList(this StatisticsState statisticsState)
         {
             var players = statisticsState.Statistics.GetAt<Dictionary<string, Player>>("statistic.player");
             if (players == null)
@@ -40,7 +40,7 @@ namespace Gameye.Sdk
         /// <param name="statisticsState"></param>
         /// <param name="teamKey"></param>
         /// <returns>An ImmutableArray of Players</returns>
-        public static ImmutableArray<Player> SelectPlayerListForTeam(StatisticsState statisticsState, string teamKey)
+        public static ImmutableArray<Player> SelectPlayerListForTeam(this StatisticsState statisticsState, string teamKey)
         {
             var team = statisticsState.Statistics.GetAt<Team>($"statistic.team.{teamKey}");
             var players = statisticsState.Statistics.GetAt<Dictionary<string, Player>>("statistic.player");
@@ -62,7 +62,7 @@ namespace Gameye.Sdk
         /// <param name="statisticsState"></param>
         /// <param name="playerKey"></param>
         /// <returns>A player object or null if not found</returns>
-        public static Player SelectPlayer(StatisticsState statisticsState, string playerKey)
+        public static Player SelectPlayer(this StatisticsState statisticsState, string playerKey)
             => statisticsState.Statistics.GetAt<Player>($"statistic.player.{playerKey}");
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="statisticsState"></param>
         /// <returns>An ImmutableArray of Teams</returns>
-        public static ImmutableArray<Team> SelectTeamList(StatisticsState statisticsState)
+        public static ImmutableArray<Team> SelectTeamList(this StatisticsState statisticsState)
         {
             var teams = statisticsState.Statistics.GetAt<Dictionary<string, Team>>($"statistic.team");
             if (teams == null)
@@ -90,7 +90,7 @@ namespace Gameye.Sdk
         /// <param name="statisticsState"></param>
         /// <param name="teamKey"></param>
         /// <returns>A Team object or null if not found</returns>
-        public static Team SelectTeam(StatisticsState statisticsState, string teamKey)
+        public static Team SelectTeam(this StatisticsState statisticsState, string teamKey)
             => statisticsState.Statistics.GetAt<Team>($"statistic.team.{teamKey}");
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="statisticsState"></param>
         /// <returns>A long representing the number of started rounds</returns>
-        public static long SelectRounds(StatisticsState statisticsState)
+        public static long SelectRounds(this StatisticsState statisticsState)
             => statisticsState.Statistics.GetAt<long>($"statistic.startedRounds");
     }
 }

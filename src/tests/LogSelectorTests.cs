@@ -19,7 +19,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsAllLogs()
         {
             var logState = LogState.WithLogs(CreateLogs());
-            var filtered = LogSelectors.SelectAllLogs(logState);
+            var filtered = logState.SelectAllLogs();
 
             Assert.AreEqual(1095, filtered.Length);
             Assert.AreEqual("561", filtered[560].LineKey);
@@ -30,7 +30,7 @@ namespace Gameye.Sdk.Tests
         public void SelectsOnlyRequestedLogs()
         {
             var logState = LogState.WithLogs(CreateLogs());
-            var filtered = LogSelectors.SelectLogsSince(logState, 912);
+            var filtered = logState.SelectLogsSince(912);
 
             Assert.AreEqual(1095 - 912, filtered.Length);
         }

@@ -11,7 +11,7 @@ namespace Gameye.Sdk
         /// <param name="sessionState"></param>
         /// <param name="gameKey"></param>
         /// <returns>An ImmutableArray of sessions</returns>
-        public static ImmutableArray<Session> SelectSessionListForGame(SessionState sessionState, string gameKey)
+        public static ImmutableArray<Session> SelectSessionListForGame(this SessionState sessionState, string gameKey)
         {
             return sessionState.Sessions.Values.Where(session => session.Image == gameKey).ToImmutableArray();
         }
@@ -21,7 +21,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="sessionState"></param>
         /// <returns>An ImmutableArray of sessions</returns>
-        public static ImmutableArray<Session> SelectSessionList(SessionState sessionState)
+        public static ImmutableArray<Session> SelectSessionList(this SessionState sessionState)
         {
             return sessionState.Sessions.Values.ToImmutableArray();
         }
@@ -32,7 +32,7 @@ namespace Gameye.Sdk
         /// <param name="sessionState"></param>
         /// <param name="sessionId"></param>
         /// <returns>A Session object or null if not found</returns>
-        public static Session SelectSession(SessionState sessionState, string sessionId)
+        public static Session SelectSession(this SessionState sessionState, string sessionId)
         {
             if (!sessionState.Sessions.ContainsKey(sessionId))
             {

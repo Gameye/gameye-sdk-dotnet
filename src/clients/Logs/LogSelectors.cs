@@ -11,7 +11,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="logState"></param>
         /// <returns>An ImmutableArray of LogLines</returns>
-        public static ImmutableArray<LogLine> SelectAllLogs(LogState logState)
+        public static ImmutableArray<LogLine> SelectAllLogs(this LogState logState)
         {
             var lines = logState.Logs.GetAt<JObject>("line") ?? new JObject();
             var logs = new List<LogLine>();
@@ -29,7 +29,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="logState"></param>
         /// <returns>An ImmutableArray of LogLines</returns>
-        public static ImmutableArray<LogLine> SelectLogsSince(LogState logState, int lineNumber)
+        public static ImmutableArray<LogLine> SelectLogsSince(this LogState logState, int lineNumber)
         {
             var lines = logState.Logs.GetAt<JObject>("line") ?? new JObject();
             var logs = new List<LogLine>();

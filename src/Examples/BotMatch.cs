@@ -28,25 +28,25 @@ namespace Examples
 
             client.SessionStore.OnChange += (SessionState state) =>
             {
-                session = SessionSelectors.SelectSession(state, sessionId);
+                session = state.SelectSession(sessionId);
             };
 
             client.StatisticsStore.OnChange += (StatisticsState state) =>
             {
-                finalStats = StatisticsSelectors.SelectRawStatistics(state);
+                finalStats = state.SelectRawStatistics();
             };
 
             var currentLine = 0;
             client.LogStore.OnChange += (LogState state) =>
             {
-                var lastLogs = LogSelectors.SelectLogsSince(state, currentLine);
+                var lastLogs = state.SelectLogsSince(currentLine);
                 foreach(var log in lastLogs)
                 {
                     Console.WriteLine(log);
                 }
                 currentLine += lastLogs.Count();
 
-                allLogs = LogSelectors.SelectAllLogs(state);
+                allLogs = state.SelectAllLogs();
             };
 
             await client.SubscribeSessionEvents();

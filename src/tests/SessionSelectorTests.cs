@@ -34,7 +34,7 @@ namespace Gameye.Sdk.Tests
 
             var sessionState = SessionState.WithSessions(sessions);
 
-            var filtered = SessionSelectors.SelectSessionList(sessionState);
+            var filtered = sessionState.SelectSessionList();
             Assert.AreEqual(unnamedSessions, filtered.Length);
         }
 
@@ -57,7 +57,7 @@ namespace Gameye.Sdk.Tests
 
             var sessionState = SessionState.WithSessions(sessions);
 
-            var filtered = SessionSelectors.SelectSessionListForGame(sessionState, "game-two");
+            var filtered = sessionState.SelectSessionListForGame("game-two");
             Assert.AreEqual(namedSessions, filtered.Length);
         }
 
@@ -76,10 +76,10 @@ namespace Gameye.Sdk.Tests
 
             var sessionState = SessionState.WithSessions(sessions);
 
-            var foundSession = SessionSelectors.SelectSession(sessionState, "session-id-one");
+            var foundSession = sessionState.SelectSession("session-id-one");
             Assert.AreEqual("specific-game", foundSession.Image);
 
-            var shouldBeNull = SessionSelectors.SelectSession(sessionState, "some-key-that-shouldnt-exist");
+            var shouldBeNull = sessionState.SelectSession("some-key-that-shouldnt-exist");
             Assert.AreEqual(null, shouldBeNull);
         }
     }
