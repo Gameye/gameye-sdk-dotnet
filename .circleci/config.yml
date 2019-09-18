@@ -1,0 +1,70 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - checkout
+      - run: >
+          dotnet test ./src
+          -c Release
+
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+
+    steps:
+      - checkout
+      - run: >
+          dotnet build ./src/clients/Gameye.Sdk.csproj
+          -c Release
+
+  deploy:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - checkout
+      - run: >
+          dotnet pack ./src/clients/Gameye.Sdk.csproj
+          -c Release
+          -o ../../artifacts
+          /p:AssemblyVersion=$(echo $CIRCLE_TAG | sed -nre 's/v(([0-9]+\.)*[0-9]+)(-[0-9]*)?.*/\1/p')
+          /p:VersionPrefix=$(echo $CIRCLE_TAG | sed -nre 's/v(([0-9]+\.)*[0-9]+(-[0-9]*)?).*/\1/p')
+      - run: >
+          dotnet nuget push ./artifacts/*.nupkg
+          -k $NUGET_APIKEY
+          -s https://api.nuget.org/v3/index.json
+      - store_artifacts:
+          path: artifacts
+          destination: artifacts
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: /.*?/
+            tags:
+              # v1.0.0-1 / v1.0.0-pre1 / v1.0.0
+              only: /.*?/
+
+      - build:
+          requires: [test]
+          filters:
+            branches:
+              only: /.*?/
+            tags:
+              # v1.0.0-1 / v1.0.0-pre1 / v1.0.0
+              only: /.*?/
+
+      - deploy:
+          requires: [build]
+          context: nuget-authorized
+          filters:
+            branches:
+              ignore: /.*?/
+            tags:
+              # v1.0.0-1 / v1.0.0-pre1 / v1.0.0
+              only: /^v\d+\.\d+\.\d+(\-.+)?$/
