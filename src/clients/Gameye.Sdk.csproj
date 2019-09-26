@@ -13,7 +13,7 @@
   
   <PropertyGroup>
     <DocumentationFile>$(MSBuildProjectDirectory)\..\..\docs\Gameye.Sdk.xml</DocumentationFile>
-    <DocumentationMarkdown>$(MSBuildProjectDirectory)\..\..\docs\api.md</DocumentationMarkdown>
+    <DocumentationMarkdown>$(MSBuildProjectDirectory)\..\..\docs\README.md</DocumentationMarkdown>
     <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
   </PropertyGroup>
   
