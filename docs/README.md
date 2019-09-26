@@ -5,6 +5,9 @@
 
 - [GameyeClient](#T-Gameye-Sdk-GameyeClient 'Gameye.Sdk.GameyeClient')
   - [#ctor(clientConfig)](#M-Gameye-Sdk-GameyeClient-#ctor-Gameye-Sdk-GameyeClientConfig- 'Gameye.Sdk.GameyeClient.#ctor(Gameye.Sdk.GameyeClientConfig)')
+  - [LogStore](#P-Gameye-Sdk-GameyeClient-LogStore 'Gameye.Sdk.GameyeClient.LogStore')
+  - [SessionStore](#P-Gameye-Sdk-GameyeClient-SessionStore 'Gameye.Sdk.GameyeClient.SessionStore')
+  - [StatisticsStore](#P-Gameye-Sdk-GameyeClient-StatisticsStore 'Gameye.Sdk.GameyeClient.StatisticsStore')
   - [CommandStartMatch(matchKey,gameKey,locationKeys,templateKey,config,endCallbackUrl)](#M-Gameye-Sdk-GameyeClient-CommandStartMatch-System-String,System-String,System-String[],System-String,System-Collections-Generic-Dictionary{System-String,System-Object},System-String- 'Gameye.Sdk.GameyeClient.CommandStartMatch(System.String,System.String,System.String[],System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)')
   - [CommandStopMatch(matchKey)](#M-Gameye-Sdk-GameyeClient-CommandStopMatch-System-String- 'Gameye.Sdk.GameyeClient.CommandStopMatch(System.String)')
   - [SubscribeLogEvents(matchKey,onStreamClosed)](#M-Gameye-Sdk-GameyeClient-SubscribeLogEvents-System-String,System-Action- 'Gameye.Sdk.GameyeClient.SubscribeLogEvents(System.String,System.Action)')
@@ -76,6 +79,27 @@ Create a new client
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | clientConfig | [Gameye.Sdk.GameyeClientConfig](#T-Gameye-Sdk-GameyeClientConfig 'Gameye.Sdk.GameyeClientConfig') |  |
+
+<a name='P-Gameye-Sdk-GameyeClient-LogStore'></a>
+### LogStore `property`
+
+##### Summary
+
+LogStore. Used to add callbacks for events.
+
+<a name='P-Gameye-Sdk-GameyeClient-SessionStore'></a>
+### SessionStore `property`
+
+##### Summary
+
+SessionStore. Used to add callbacks for events.
+
+<a name='P-Gameye-Sdk-GameyeClient-StatisticsStore'></a>
+### StatisticsStore `property`
+
+##### Summary
+
+StatisticsStore. Used to add callbacks for events.
 
 <a name='M-Gameye-Sdk-GameyeClient-CommandStartMatch-System-String,System-String,System-String[],System-String,System-Collections-Generic-Dictionary{System-String,System-Object},System-String-'></a>
 ### CommandStartMatch(matchKey,gameKey,locationKeys,templateKey,config,endCallbackUrl) `method`
