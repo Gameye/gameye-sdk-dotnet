@@ -53,6 +53,7 @@ namespace Gameye.Sdk
         /// <param name="config"></param>
         /// <param name="endCallbackUrl"></param>
         /// <returns>An awaitable task that finishes when the command is executed</returns>
+        /// <exception cref="CommandException">Thrown if the command fails</exception>
         public async Task CommandStartMatch(string matchKey,
             string gameKey,
             string[] locationKeys,
@@ -81,6 +82,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="matchKey"></param>
         /// <returns>An awaitable task that finishes when the command is executed</returns>
+        /// <exception cref="CommandException">Thrown if the command fails</exception>
         public async Task CommandStopMatch(string matchKey)
         {
             var command = new StopMatchCommand
@@ -99,6 +101,7 @@ namespace Gameye.Sdk
         /// </summary>
         /// <param name="onStreamClosed"></param>
         /// <returns>An awaitable task that finishes when the stream is opened</returns>
+        /// <exception cref="CommandException">Thrown if the event stream subscription fails</exception>
         public async Task SubscribeSessionEvents(Action onStreamClosed = null)
         {
             var command = new SessionQuery();
@@ -119,6 +122,7 @@ namespace Gameye.Sdk
         /// <param name="matchKey"></param>
         /// <param name="onStreamClosed"></param>
         /// <returns>An awaitable task that finishes when the stream is opened</returns>
+        /// <exception cref="CommandException">Thrown if the event stream subscription fails</exception>
         public async Task SubscribeStatisticsEvents(string matchKey, Action onStreamClosed = null)
         {
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/statistic", new { matchKey }, StreamHeaders);
@@ -136,6 +140,7 @@ namespace Gameye.Sdk
         /// <param name="matchKey"></param>
         /// <param name="onStreamClosed"></param>
         /// <returns>An awaitable task that finishes when the stream is opened</returns>
+        /// <exception cref="CommandException">Thrown if the event stream subscription fails</exception>
         public async Task SubscribeLogEvents(string matchKey, Action onStreamClosed = null)
         {
             var eventStream = await EventStream.Create($"{clientConfig.Endpoint}/fetch/log", new { matchKey }, StreamHeaders);
