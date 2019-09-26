@@ -7,10 +7,10 @@ namespace Gameye.Sdk
     public static class LogSelectors
     {
         /// <summary>
-        /// Select all the logs in the store. Use this as an extension method on LogState
+        /// Select all the <see cref="LogLine"/>s in the store. Use this as an extension method on <see cref="LogState"/>
         /// </summary>
         /// <param name="logState"></param>
-        /// <returns>An ImmutableArray of LogLines</returns>
+        /// <returns>An <see cref="ImmutableArray"/> of <see cref="LogLine"/></returns>
         public static ImmutableArray<LogLine> SelectAllLogs(this LogState logState)
         {
             var lines = logState.Logs.GetAt<JObject>("line") ?? new JObject();
@@ -25,11 +25,11 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select all the logs since a given line number. Use this as an extension method on LogState
+        /// Select all the <see cref="LogLine"/>s since a given line number. Use this as an extension method on <see cref="LogState"/>
         /// </summary>
         /// <param name="logState"></param>
-        /// <param name="lineNumber">The line number after which to select logs</param>
-        /// <returns>An ImmutableArray of LogLines</returns>
+        /// <param name="lineNumber">The line number after which to select <see cref="LogLine"/>s</param>
+        /// <returns>An <see cref="ImmutableArray"/>of <see cref="LogLine"/>s</returns>
         public static ImmutableArray<LogLine> SelectLogsSince(this LogState logState, int lineNumber)
         {
             var lines = logState.Logs.GetAt<JObject>("line") ?? new JObject();

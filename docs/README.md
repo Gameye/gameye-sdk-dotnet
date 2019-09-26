@@ -85,21 +85,21 @@ Create a new client
 
 ##### Summary
 
-LogStore. Used to add callbacks for events.
+[LogStore](#P-Gameye-Sdk-GameyeClient-LogStore 'Gameye.Sdk.GameyeClient.LogStore'). Used to add callbacks for events.
 
 <a name='P-Gameye-Sdk-GameyeClient-SessionStore'></a>
 ### SessionStore `property`
 
 ##### Summary
 
-SessionStore. Used to add callbacks for events.
+[SessionStore](#P-Gameye-Sdk-GameyeClient-SessionStore 'Gameye.Sdk.GameyeClient.SessionStore'). Used to add callbacks for events.
 
 <a name='P-Gameye-Sdk-GameyeClient-StatisticsStore'></a>
 ### StatisticsStore `property`
 
 ##### Summary
 
-StatisticsStore. Used to add callbacks for events.
+[StatisticsStore](#P-Gameye-Sdk-GameyeClient-StatisticsStore 'Gameye.Sdk.GameyeClient.StatisticsStore'). Used to add callbacks for events.
 
 <a name='M-Gameye-Sdk-GameyeClient-CommandStartMatch-System-String,System-String,System-String[],System-String,System-Collections-Generic-Dictionary{System-String,System-Object},System-String-'></a>
 ### CommandStartMatch(matchKey,gameKey,locationKeys,templateKey,config,endCallbackUrl) `method`
@@ -306,11 +306,11 @@ Gameye.Sdk
 
 ##### Summary
 
-Select all the logs in the store. Use this as an extension method on LogState
+Select all the [LogLine](#T-Gameye-Sdk-LogLine 'Gameye.Sdk.LogLine')s in the store. Use this as an extension method on [LogState](#T-Gameye-Sdk-LogState 'Gameye.Sdk.LogState')
 
 ##### Returns
 
-An ImmutableArray of LogLines
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray') of [LogLine](#T-Gameye-Sdk-LogLine 'Gameye.Sdk.LogLine')
 
 ##### Parameters
 
@@ -323,18 +323,18 @@ An ImmutableArray of LogLines
 
 ##### Summary
 
-Select all the logs since a given line number. Use this as an extension method on LogState
+Select all the [LogLine](#T-Gameye-Sdk-LogLine 'Gameye.Sdk.LogLine')s since a given line number. Use this as an extension method on [LogState](#T-Gameye-Sdk-LogState 'Gameye.Sdk.LogState')
 
 ##### Returns
 
-An ImmutableArray of LogLines
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray')of [LogLine](#T-Gameye-Sdk-LogLine 'Gameye.Sdk.LogLine')s
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | logState | [Gameye.Sdk.LogState](#T-Gameye-Sdk-LogState 'Gameye.Sdk.LogState') |  |
-| lineNumber | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The line number after which to select logs |
+| lineNumber | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The line number after which to select [LogLine](#T-Gameye-Sdk-LogLine 'Gameye.Sdk.LogLine')s |
 
 <a name='T-Gameye-Sdk-LogStore'></a>
 ## LogStore `type`
@@ -359,7 +359,7 @@ Gameye.Sdk
 
 ##### Summary
 
-Exception representing a missing field in the GameyeClientConfig
+Exception representing a missing field in the [GameyeClientConfig](#T-Gameye-Sdk-GameyeClientConfig 'Gameye.Sdk.GameyeClientConfig')
 
 <a name='T-Gameye-Sdk-Player'></a>
 ## Player `type`
@@ -472,29 +472,29 @@ Gameye.Sdk
 
 ##### Summary
 
-Select a single session with the given id. Use this as an extension method on SessionState
+Select a single [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session') with the given id. Use this as an extension method on [SessionState](#T-Gameye-Sdk-SessionState 'Gameye.Sdk.SessionState')
 
 ##### Returns
 
-A Session object or null if not found
+A [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session') object or null if not found
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | sessionState | [Gameye.Sdk.SessionState](#T-Gameye-Sdk-SessionState 'Gameye.Sdk.SessionState') |  |
-| sessionId | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') |  |
+| sessionId | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Unique identifier of the [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session'). Also known as Match Key |
 
 <a name='M-Gameye-Sdk-SessionSelectors-SelectSessionList-Gameye-Sdk-SessionState-'></a>
 ### SelectSessionList(sessionState) `method`
 
 ##### Summary
 
-Select all the active sessions. Use this as an extension method on SessionState
+Select all the active [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session')s. Use this as an extension method on [SessionState](#T-Gameye-Sdk-SessionState 'Gameye.Sdk.SessionState')
 
 ##### Returns
 
-An ImmutableArray of sessions
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray') of [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session')
 
 ##### Parameters
 
@@ -507,18 +507,18 @@ An ImmutableArray of sessions
 
 ##### Summary
 
-Select sessions with the given game key. Use this as an extension method on SessionState
+Select [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session')s with the given game key. Use this as an extension method on [SessionState](#T-Gameye-Sdk-SessionState 'Gameye.Sdk.SessionState')
 
 ##### Returns
 
-An ImmutableArray of sessions
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray') of [Session](#T-Gameye-Sdk-Session 'Gameye.Sdk.Session')
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | sessionState | [Gameye.Sdk.SessionState](#T-Gameye-Sdk-SessionState 'Gameye.Sdk.SessionState') |  |
-| gameKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') |  |
+| gameKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the game (eg: csgo) |
 
 <a name='T-Gameye-Sdk-SessionStore'></a>
 ## SessionStore `type`
@@ -546,29 +546,29 @@ Gameye.Sdk
 
 ##### Summary
 
-Select a single player by key. Use this as an extension method on StatisticsState
+Select a single [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player') by key. Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
-A player object or null if not found
+A [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player') object or null if not found
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | statisticsState | [Gameye.Sdk.StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState') |  |
-| playerKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the player |
+| playerKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player') |
 
 <a name='M-Gameye-Sdk-StatisticsSelectors-SelectPlayerList-Gameye-Sdk-StatisticsState-'></a>
 ### SelectPlayerList(statisticsState) `method`
 
 ##### Summary
 
-Select the list of all players. Use this as an extension method on StatisticsState
+Select the list of all [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player')s. Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
-An ImmutableArray of Players
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray') of [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player')
 
 ##### Parameters
 
@@ -581,29 +581,29 @@ An ImmutableArray of Players
 
 ##### Summary
 
-Select the list of players on a given team. Use this as an extension method on StatisticsState
+Select the list of [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player')s on a given [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team'). Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
-An ImmutableArray of Players
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray') of [Player](#T-Gameye-Sdk-Player 'Gameye.Sdk.Player')
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | statisticsState | [Gameye.Sdk.StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState') |  |
-| teamKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the team |
+| teamKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team') |
 
 <a name='M-Gameye-Sdk-StatisticsSelectors-SelectRawStatistics-Gameye-Sdk-StatisticsState-'></a>
 ### SelectRawStatistics(statisticsState) `method`
 
 ##### Summary
 
-Select the raw statistics Json. Use this as an extension method on StatisticsState
+Select the raw statistics Json. Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
-A Newtonsoft JObject containing the current statistics snapshot
+A [JObject](#T-Newtonsoft-Json-Linq-JObject 'Newtonsoft.Json.Linq.JObject') containing the current statistics snapshot
 
 ##### Parameters
 
@@ -616,7 +616,7 @@ A Newtonsoft JObject containing the current statistics snapshot
 
 ##### Summary
 
-Select the number of started rounds. Use this as an extension method on StatisticsState
+Select the number of started rounds. Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
@@ -633,29 +633,29 @@ A long representing the number of started rounds
 
 ##### Summary
 
-Select a single team by key. Use this as an extension method on StatisticsState
+Select a single [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team') by key. Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
-A Team object or null if not found
+A [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team') object or null if not found
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | statisticsState | [Gameye.Sdk.StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState') |  |
-| teamKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the team |
+| teamKey | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key of the [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team') |
 
 <a name='M-Gameye-Sdk-StatisticsSelectors-SelectTeamList-Gameye-Sdk-StatisticsState-'></a>
 ### SelectTeamList(statisticsState) `method`
 
 ##### Summary
 
-Select the list of all teams. Use this as an extension method on StatisticsState
+Select the list of all [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team')s. Use this as an extension method on [StatisticsState](#T-Gameye-Sdk-StatisticsState 'Gameye.Sdk.StatisticsState')
 
 ##### Returns
 
-An ImmutableArray of Teams
+An [ImmutableArray](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Immutable.ImmutableArray 'System.Collections.Immutable.ImmutableArray') of [Team](#T-Gameye-Sdk-Team 'Gameye.Sdk.Team')
 
 ##### Parameters
 

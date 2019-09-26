@@ -8,18 +8,18 @@ namespace Gameye.Sdk
     public static class StatisticsSelectors
     {
         /// <summary>
-        /// Select the raw statistics Json. Use this as an extension method on StatisticsState
+        /// Select the raw statistics Json. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
-        /// <returns>A Newtonsoft JObject containing the current statistics snapshot</returns>
+        /// <returns>A <see cref="JObject"/> containing the current statistics snapshot</returns>
         public static JObject SelectRawStatistics(this StatisticsState statisticsState)
             => statisticsState.Statistics.GetAt<JObject>("");
 
         /// <summary>
-        /// Select the list of all players. Use this as an extension method on StatisticsState
+        /// Select the list of all <see cref="Player"/>s. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
-        /// <returns>An ImmutableArray of Players</returns>
+        /// <returns>An <see cref="ImmutableArray"/> of <see cref="Player"/></returns>
         public static ImmutableArray<Player> SelectPlayerList(this StatisticsState statisticsState)
         {
             var players = statisticsState.Statistics.GetAt<Dictionary<string, Player>>("statistic.player");
@@ -35,11 +35,11 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select the list of players on a given team. Use this as an extension method on StatisticsState
+        /// Select the list of <see cref="Player"/>s on a given <see cref="Team"/>. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
-        /// <param name="teamKey">Key of the team</param>
-        /// <returns>An ImmutableArray of Players</returns>
+        /// <param name="teamKey">Key of the <see cref="Team"/></param>
+        /// <returns>An <see cref="ImmutableArray"/> of <see cref="Player"/></returns>
         public static ImmutableArray<Player> SelectPlayerListForTeam(this StatisticsState statisticsState, string teamKey)
         {
             var team = statisticsState.Statistics.GetAt<Team>($"statistic.team.{teamKey}");
@@ -57,19 +57,19 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select a single player by key. Use this as an extension method on StatisticsState
+        /// Select a single <see cref="Player"/> by key. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
-        /// <param name="playerKey">Key of the player</param>
-        /// <returns>A player object or null if not found</returns>
+        /// <param name="playerKey">Key of the <see cref="Player"/></param>
+        /// <returns>A <see cref="Player"/> object or null if not found</returns>
         public static Player SelectPlayer(this StatisticsState statisticsState, string playerKey)
             => statisticsState.Statistics.GetAt<Player>($"statistic.player.{playerKey}");
 
         /// <summary>
-        /// Select the list of all teams. Use this as an extension method on StatisticsState
+        /// Select the list of all <see cref="Team"/>s. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
-        /// <returns>An ImmutableArray of Teams</returns>
+        /// <returns>An <see cref="ImmutableArray"/> of <see cref="Team"/></returns>
         public static ImmutableArray<Team> SelectTeamList(this StatisticsState statisticsState)
         {
             var teams = statisticsState.Statistics.GetAt<Dictionary<string, Team>>($"statistic.team");
@@ -85,16 +85,16 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select a single team by key. Use this as an extension method on StatisticsState
+        /// Select a single <see cref="Team"/> by key. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
-        /// <param name="teamKey">Key of the team</param>
-        /// <returns>A Team object or null if not found</returns>
+        /// <param name="teamKey">Key of the <see cref="Team"/></param>
+        /// <returns>A <see cref="Team"/> object or null if not found</returns>
         public static Team SelectTeam(this StatisticsState statisticsState, string teamKey)
             => statisticsState.Statistics.GetAt<Team>($"statistic.team.{teamKey}");
 
         /// <summary>
-        /// Select the number of started rounds. Use this as an extension method on StatisticsState
+        /// Select the number of started rounds. Use this as an extension method on <see cref="StatisticsState"/>
         /// </summary>
         /// <param name="statisticsState"></param>
         /// <returns>A long representing the number of started rounds</returns>

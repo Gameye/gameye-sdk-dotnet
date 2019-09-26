@@ -33,7 +33,7 @@ namespace Gameye.Sdk
     }
 
     /// <summary>
-    /// Exception representing a missing field in the GameyeClientConfig
+    /// Exception representing a missing field in the <see cref="GameyeClientConfig"/>
     /// </summary>
     public class MissingConfigException : Exception
     {

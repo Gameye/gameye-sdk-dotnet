@@ -11,15 +11,15 @@ namespace Gameye.Sdk
     {
         private readonly GameyeClientConfig clientConfig;
         /// <summary>
-        /// SessionStore. Used to add callbacks for events.
+        /// <see cref="SessionStore"/>. Used to add callbacks for events.
         /// </summary>
         public SessionStore SessionStore { get; private set; }
         /// <summary>
-        /// StatisticsStore. Used to add callbacks for events.
+        /// <see cref="StatisticsStore"/>. Used to add callbacks for events.
         /// </summary>
         public StatisticsStore StatisticsStore { get; private set; }
         /// <summary>
-        /// LogStore. Used to add callbacks for events.
+        /// <see cref="LogStore"/>. Used to add callbacks for events.
         /// </summary>
         public LogStore LogStore { get; private set; }
 
