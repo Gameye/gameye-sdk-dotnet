@@ -46,12 +46,12 @@ namespace Gameye.Sdk
         /// <summary>
         /// Start a match
         /// </summary>
-        /// <param name="matchKey"></param>
-        /// <param name="gameKey"></param>
-        /// <param name="locationKeys"></param>
-        /// <param name="templateKey"></param>
-        /// <param name="config"></param>
-        /// <param name="endCallbackUrl"></param>
+        /// <param name="matchKey">Unique identifier for the match. Also known as SessionId</param>
+        /// <param name="gameKey">Identifier for the game (eg: csgo)</param>
+        /// <param name="locationKeys">Array of locations</param>
+        /// <param name="templateKey">Game template</param>
+        /// <param name="config">Game config dictionary</param>
+        /// <param name="endCallbackUrl">(Optional) The url callback when the game is finished</param>
         /// <returns>An awaitable task that finishes when the command is executed</returns>
         /// <exception cref="CommandException">Thrown if the command fails</exception>
         public async Task CommandStartMatch(string matchKey,
@@ -80,7 +80,7 @@ namespace Gameye.Sdk
         /// <summary>
         /// Stop a match
         /// </summary>
-        /// <param name="matchKey"></param>
+        /// <param name="matchKey">Unique identifier for the match. Also known as SessionId</param>
         /// <returns>An awaitable task that finishes when the command is executed</returns>
         /// <exception cref="CommandException">Thrown if the command fails</exception>
         public async Task CommandStopMatch(string matchKey)
@@ -99,7 +99,7 @@ namespace Gameye.Sdk
         /// <summary>
         /// Subscribe to all session events
         /// </summary>
-        /// <param name="onStreamClosed"></param>
+        /// <param name="onStreamClosed">(Optional) callback when the stream is closed. This occurs when a match ends</param>
         /// <returns>An awaitable task that finishes when the stream is opened</returns>
         /// <exception cref="CommandException">Thrown if the event stream subscription fails</exception>
         public async Task SubscribeSessionEvents(Action onStreamClosed = null)
@@ -119,8 +119,8 @@ namespace Gameye.Sdk
         /// <summary>
         /// Subscribe to all statistic events for a given match
         /// </summary>
-        /// <param name="matchKey"></param>
-        /// <param name="onStreamClosed"></param>
+        /// <param name="matchKey">Unique identifier for the match. Also known as SessionId</param>
+        /// <param name="onStreamClosed">(Optional) callback when the stream is closed. This occurs when a match ends</param>
         /// <returns>An awaitable task that finishes when the stream is opened</returns>
         /// <exception cref="CommandException">Thrown if the event stream subscription fails</exception>
         public async Task SubscribeStatisticsEvents(string matchKey, Action onStreamClosed = null)
@@ -137,8 +137,8 @@ namespace Gameye.Sdk
         /// <summary>
         /// Subscribe to all log events for a given match
         /// </summary>
-        /// <param name="matchKey"></param>
-        /// <param name="onStreamClosed"></param>
+        /// <param name="matchKey">Unique identifier for the match. Also known as SessionId</param>
+        /// <param name="onStreamClosed">(Optional) callback when the stream is closed. This occurs when a match ends</param>
         /// <returns>An awaitable task that finishes when the stream is opened</returns>
         /// <exception cref="CommandException">Thrown if the event stream subscription fails</exception>
         public async Task SubscribeLogEvents(string matchKey, Action onStreamClosed = null)

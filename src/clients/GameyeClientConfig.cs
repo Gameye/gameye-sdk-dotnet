@@ -32,6 +32,9 @@ namespace Gameye.Sdk
         }
     }
 
+    /// <summary>
+    /// Exception representing a missing field in the GameyeClientConfig
+    /// </summary>
     public class MissingConfigException : Exception
     {
         public MissingConfigException(string field) : base($"The field {field} is missing from the config") { }

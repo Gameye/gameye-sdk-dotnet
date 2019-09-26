@@ -6,7 +6,7 @@ namespace Gameye.Sdk
     public static class SessionSelectors
     {
         /// <summary>
-        /// Select sessions with the given game key
+        /// Select sessions with the given game key. Use this as an extension method on SessionState
         /// </summary>
         /// <param name="sessionState"></param>
         /// <param name="gameKey"></param>
@@ -17,7 +17,7 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select all the active sessions
+        /// Select all the active sessions. Use this as an extension method on SessionState
         /// </summary>
         /// <param name="sessionState"></param>
         /// <returns>An ImmutableArray of sessions</returns>
@@ -27,7 +27,7 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select a single session with the given id
+        /// Select a single session with the given id. Use this as an extension method on SessionState
         /// </summary>
         /// <param name="sessionState"></param>
         /// <param name="sessionId"></param>

@@ -7,7 +7,7 @@ namespace Gameye.Sdk
     public static class LogSelectors
     {
         /// <summary>
-        /// Select all the logs in the store
+        /// Select all the logs in the store. Use this as an extension method on LogState
         /// </summary>
         /// <param name="logState"></param>
         /// <returns>An ImmutableArray of LogLines</returns>
@@ -25,9 +25,10 @@ namespace Gameye.Sdk
         }
 
         /// <summary>
-        /// Select all the logs since a given line number
+        /// Select all the logs since a given line number. Use this as an extension method on LogState
         /// </summary>
         /// <param name="logState"></param>
+        /// <param name="lineNumber">The line number after which to select logs</param>
         /// <returns>An ImmutableArray of LogLines</returns>
         public static ImmutableArray<LogLine> SelectLogsSince(this LogState logState, int lineNumber)
         {
